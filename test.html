@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f9f9f9;
+      }
+
+      form {
+        max-width: 600px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .radio-group {
+        margin-top: 20px;
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 6px;
+      }
+
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-weight: normal;
+      }
+
+      .radio-group input[type="radio"] {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <label for="name">* Нэр</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Skywoker"
+        required
+      />
+
+      <label for="surname">* Овог</label>
+      <input
+        type="text"
+        id="surname"
+        name="surname"
+        placeholder="Овог"
+        required
+      />
+
+      <label for="phone">* Утасны дугаар</label>
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        placeholder="Утасны дугаар"
+        required
+      />
+
+      <label for="email">* И-Мэйл хаяг</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="skywoker0531@gmail.com"
+        required
+      />
+
+      <div class="radio-group">
+        <h4>И-Баримт</h4>
+        <label>
+          <input type="radio" name="ibarimt" value="individual" checked />
+          Хувь хүн
+        </label>
+        <label>
+          <input type="radio" name="ibarimt" value="organization" />
+          Албан байгууллага
+        </label>
+        <label>
+          <input type="radio" name="ibarimt" value="taxpayer" />
+          Татвар төлөгч иргэн
+        </label>
+      </div>
+    </form>
+  </body>
+</html>

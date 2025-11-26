@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8">
+    <title>Бидэнтэй холбогдох - MyShop</title>
+  </head>
+  <body>
+
+    <header>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0"
+        bgcolor="#FFFFFF">
+        <tr>
+          <td height="15" bgcolor="#000000"></td>
+        </tr>
+        <tr>
+          <td>
+            <table width="95%" border="0" cellpadding="20" cellspacing="0"
+              align="center">
+              <tr>
+
+                <td align="left" width="40%" valign="middle">
+
+                  <b><a href="main.html">ЦЭС</a></b>
+                  &nbsp;&nbsp;
+                  <a href="women.html">Эмэгтэй</a>
+                  &nbsp;&nbsp;
+                  <a href="index.html">Хүүхэд</a>
+                  &nbsp;&nbsp;
+                  <a href="new-arrivals.html">Шинэ бүтээгдэхүүн</a>
+                  &nbsp;&nbsp;
+                  <a href="sale.html">Хямдарсан бүтээгдэхүүн</a>
+
+                </td>
+
+                <td align="center" width="20%">
+                  <a href="main.html">
+                    <img src="/zurag/logo.png" alt="Logo" width="100"
+                      height="30" />
+                  </a>
+                </td>
+
+                <td align="right" width="40%">
+                  <a href="#" title="Хайх">
+                    <img src="/zurag/search.png" alt="Search" width="24"
+                      height="24" />
+                  </a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="sagslah.html" title="Таны сагс">
+                    <img src="/zurag/cart.png" alt="Cart" width="24"
+                      height="24" />
+                  </a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="login.html" title="Нэвтрэх">
+                    <img src="/zurag/log.png" alt="Login" width="24"
+                      height="24" />
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td height="1" bgcolor="#E0E0E0"></td>
+        </tr>
+      </table>
+    </header>
+    <hr>
+
+    <main>
+      <table width="100%" cellpadding="40" cellspacing="0">
+        <tr>
+          <td align="center">
+            <h1>Бидэнтэй холбогдох</h1>
+            <p>Бидэнд хандах зүйл байна уу? Доорх маягтыг бөглөж илгээнэ үү.</p>
+
+            <form action="mailto:info@lumaatelier.mn" method="post"
+              enctype="text/plain">
+              <fieldset>
+                <legend><b>Холбоо барих маягт</b></legend>
+
+                <table cellpadding="10" cellspacing="0">
+                  <tr>
+                    <td align="right"><label
+                        for="topic"><b>Сэдэв:</b></label></td>
+                    <td>
+                      <select id="topic" name="topic" required>
+                        <option value disabled selected>Сэдэв сонгоно
+                          уу</option>
+                        <option value="general">Ерөнхий асуулт</option>
+                        <option value="support">Тусламж хэрэгтэй байна</option>
+                        <option value="feedback">Санал хүсэлт</option>
+                        <option value="order">Захиалгын талаар</option>
+                        <option value="complaint">Гомдол</option>
+                      </select>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right"><label for="name"><b>Таны
+                          нэр:</b></label></td>
+                    <td><input type="text" id="name" name="name"
+                        placeholder="Эрхэмбаяр" size="30" required></td>
+                  </tr>
+
+                  <tr>
+                    <td align="right"><label for="email"><b>И-мэйл
+                          хаяг:</b></label></td>
+                    <td><input type="email" id="email" name="email"
+                        placeholder="example@gmail.com" size="30" required></td>
+                  </tr>
+
+                  <tr>
+                    <td align="right"><label for="phone"><b>Утасны
+                          дугаар:</b></label></td>
+                    <td><input type="tel" id="phone" name="phone"
+                        placeholder="99001122" size="30" required></td>
+                  </tr>
+
+                  <tr>
+                    <td align="right" valign="top"><label
+                        for="message"><b>Дэлгэрэнгүй:</b></label></td>
+                    <td>
+                      <textarea id="message" name="message"
+                        placeholder="Энд бичнэ үү..." rows="6" cols="30"
+                        required></textarea>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2" align="center">
+                      <input type="checkbox" id="consent" name="consent"
+                        required>
+                      <label for="consent"><small>Би <a href="#">нууцлалын
+                            бодлого</a>-той танилцсан</small></label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2" align="center">
+                      <button type="submit"><b>ИЛГЭЭХ</b></button>
+                      <button type="reset"><b>ЦЭВЭРЛЭХ</b></button>
+                    </td>
+                  </tr>
+                </table>
+              </fieldset>
+            </form>
+            <p>Манай Хэрэглэгчийн үйлчилгээний төв таны асуулгад аль болох
+              хурдан
+              хариу өгөх болно.</p>
+            <hr width="600">
+
+            <h2>Бусад холбоо барих хаягууд</h2>
+            <table cellpadding="15" cellspacing="0">
+              <tr>
+                <td align="center" width="33%">
+                  <h3> Хаяг</h3>
+                  <p>
+                    Улаанбаатар хот<br>
+                    Сүхбаатар дүүрэг<br>
+                    Хороо 1, Блок 123
+                  </p>
+                </td>
+                <td align="center" width="33%">
+                  <h3> Утас</h3>
+                  <p>
+                    +976 7000-0000<br>
+                    +976 8000-0000<br>
+                    <small>(Даваа-Баасан: 09:00-18:00)</small>
+                  </p>
+                </td>
+                <td align="center" width="33%">
+                  <h3> И-мэйл</h3>
+                  <p>
+                    info@lumaatelier.mn<br>
+                    support@lumaatelier.mn<br>
+
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+    </main>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <hr>
+
+    <footer>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <table width="90%" border="0" cellpadding="40" cellspacing="0"
+              align="center">
+              <tr>
+
+                <td width="25%" valign="top">
+
+                  <b>LUMA ATELIER</b>
+
+                  <br><br>
+
+                  Монголын тэргүүлэх загварын дэлгүүр. Дэлхийн шилдэг
+                  брэндүүдийг танд хүргэж байна.
+
+                </td>
+
+                <td width="25%" valign="top">
+                  <b>ХОЛБООСУУД</b>
+                  <br><br>
+                  <table border="0" cellpadding="5" cellspacing="0">
+                    <tr><td><a href="main.html">Нүүр хуудас</a></td></tr>
+                    <tr><td><a href="view-all.html">Бүх бараа</a></td></tr>
+                    <tr><td><a href="new-arrivals.html">Шинээр
+                          ирсэн</a></td></tr>
+                    <tr><td><a href="sale.html">Хямдрал</a></td></tr>
+                  </table>
+                </td>
+
+                <td width="25%" valign="top">
+                  <b>ҮЙЛЧИЛГЭЭ</b>
+                  <br><br>
+                  <table border="0" cellpadding="5" cellspacing="0">
+                    <tr><td><a href="who_are_we.html">Бидний тухай</a></td></tr>
+                    <tr><td><a href="location.html">Хаяг байршил</a></td></tr>
+                    <tr><td><a href="login.html">Нэвтрэх</a></td></tr>
+                    <tr><td><a href="mail_us.html">Бидэнтэй
+                          холбогдох</a></td></tr>
+                  </table>
+                </td>
+
+                <td width="25%" valign="top">
+                  <b>МЭДЭЭЛЭЛ АВАХ</b>
+                  <br><br>
+                  Шинэ бүтээгдэхүүн болон онцгой санал хүлээн авах
+                  <br><br>
+                  <form>
+                    <input type="email" placeholder="И-мэйл хаяг" size="25">
+                    <br><br>
+                    <input type="submit" value="ИЛГЭЭХ">
+                  </form>
+                </td>
+
+              </table>
+              <center>
+                <b><p>©2025 Luma Atelier</p></b>
+              </center>
+            </table>
+
+          </footer>
+
+        </body>
+      </html>

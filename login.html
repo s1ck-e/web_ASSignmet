@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нэвтрэх - Luma Atelier</title>
+
+  <style>
+        :root {
+      --main-pink: #f9c9d6;
+      --hot-pink: #e95b9a;
+      --text-dark: #333;
+      --white: #fff;
+        }
+ 
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      background: white;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: #d63384;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    header table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    header td {
+      vertical-align: middle;
+      font-size: 15px;
+    }
+
+    header a {
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    header a:hover {
+      color: #d63384;
+    }
+    
+
+  
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, #ffe9f1 0%, #fff 100%);
+      min-height: 70vh;
+    }
+
+    form {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    form h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #d63384;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #d63384;
+      outline: none;
+    }
+
+   
+    .remember {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #d63384;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 5px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #b62b6f;
+    }
+
+    .form-links {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .form-links a {
+      color: #d63384;
+    }
+
+    /* Footer */
+     footer {
+      background-color: var(--white);
+      border-top: 2px solid var(--main-pink);
+      padding: 40px 10%;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    footer table {
+      width: 100%;
+    }
+
+    footer a {
+      color: var(--text-dark);
+    }
+
+    footer a:hover {
+      color: var(--hot-pink);
+    }
+
+    input[type=email], input[type=submit] {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #f1b6c6;
+    }
+
+    input[type=submit] {
+      background-color: var(--hot-pink);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type=submit]:hover {
+      background-color: #c0457f;
+    }
+    footer form,
+footer table,
+footer div,
+input[type=email],
+input[type=submit] {
+  box-shadow: none !important;
+  filter: none !important;
+  border-collapse: collapse !important;
+  outline: none !important;
+}
+
+
+  </style>
+</head>
+
+<body>
+<header>
+    <table>
+      <tr>
+      
+        <td style="width:33%; padding-left: 40px; text-align: left;">
+          <b><a href="main.html">ЦЭС</a></b> &nbsp;
+          <a href="women.html">Эмэгтэй</a> &nbsp;
+          <a href="index.html">Хүүхэд</a> &nbsp;
+          <a href="new-arrivals.html">Шинэ бүтээгдэхүүн</a> &nbsp;
+          <a href="sale.html">Хямдралтай</a>
+        </td>
+
+        <td style="width:33%; text-align: center;">
+          <a href="main.html">
+            <img src="/zurag/logo.png" alt="Logo" style="width:120px; height:auto; display:block; margin:auto;">
+          </a>
+        </td>
+
+        <td style="width:33%; padding-right: 40px; text-align: right;">
+          <a href="#"><img src="/zurag/search.png" width="24" height="24"></a>
+          &nbsp;&nbsp;
+          <a href="sagslah.html"><img src="/zurag/cart.png" width="24" height="24"></a>
+          &nbsp;&nbsp;
+          <a href="login.html"><img src="/zurag/log.png" width="24" height="24"></a>
+        </td>
+      </tr>
+    </table>
+  </header>
+
+  <main>
+    <form action="main.html" method="get">
+      <h1>Нэвтрэх</h1>
+
+      <label for="username">Хэрэглэгчийн нэр</label>
+      <input type="text" id="username" name="username" placeholder="user123" required>
+
+      <label for="password">Нууц үг</label>
+      <input type="password" id="password" name="password" placeholder="••••••••" required>
+
+     
+      <div class="remember">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Намайг санах</label>
+      </div>
+
+      <div style="text-align:center;">
+        <button type="submit">НЭВТРЭХ</button>
+        <button type="reset">Бүртгүүлэх</button>
+      </div>
+
+      <div class="form-links">
+        <p><a href="#">Нууц үгээ мартсан уу?</a></p>
+        <p>Шинэ хэрэглэгч үү? <a href="#">Бүртгүүлэх</a></p>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <table>
+      <tr>
+        <td width="25%">
+          <b>LUMA ATELIER</b><br><br>
+          Тансаг, эмэгтэйлэг хэв маягийн дэлгүүр — таны гоо сайхны толь.
+        </td>
+        <td width="25%">
+          <b>ХОЛБООСУУД</b><br><br>
+          <a href="main.html">Нүүр хуудас</a><br>
+          <a href="view-all.html">Бүх бараа</a><br>
+          <a href="new-arrivals.html">Шинээр ирсэн</a><br>
+          <a href="sale.html">Хямдрал</a>
+        </td>
+        <td width="25%">
+          <b>ҮЙЛЧИЛГЭЭ</b><br><br>
+          <a href="who_are_we.html">Бидний тухай</a><br>
+          <a href="location.html">Хаяг байршил</a><br>
+          <a href="login.html">Нууцлалын бодлого</a><br>
+          <a href="mail_us.html">Бидэнтэй холбогдох</a>
+        </td>
+        <td width="25%">
+          <b>МЭДЭЭЛЭЛ АВАХ</b><br><br>
+          <form>
+            <input type="email" placeholder="И-мэйл хаяг" size="25"><br><br>
+            <input type="submit" value="ИЛГЭЭХ">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <center><p>©2025 Luma Atelier</p></center>
+  </footer>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luma Atelier</title>
+  <link rel="icon" href="/zurag/blogo.jpg" type="image/png">
+  <style>
+    :root {
+      --main-pink: #f9c9d6;
+      --hot-pink: #e95b9a;
+      --text-dark: #333;
+      --white: #fff;
+      --light-pink: #fef5f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      margin: 0;
+      background-color: var(--light-pink);
+      color: var(--text-dark);
+    }
+
+    /* --- HEADER STYLES (ШИНЭЧЛЭГДСЭН) --- */
+    header {
+      background-color: var(--white);
+      border-bottom: 2px solid var(--main-pink);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      height: 70px;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      padding: 0 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Desktop Navigation */
+    .desktop-nav {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    .desktop-nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 14px;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+
+    .desktop-nav a:hover {
+      color: var(--hot-pink);
+    }
+
+    /* Logo */
+    .logo-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Right Icons */
+    .header-icons {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .header-icons a img {
+        transition: transform 0.3s ease;
+    }
+    
+    .header-icons a:hover img {
+        transform: scale(1.1);
+    }
+
+    /* Mobile Menu Button (Default Hidden) */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 0;
+      color: var(--text-dark);
+    }
+
+    /* Mobile Menu Dropdown */
+    .mobile-menu {
+      display: none; /* Нуугдмал */
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: var(--white);
+      border-bottom: 2px solid var(--main-pink);
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      flex-direction: column;
+      z-index: 999;
+    }
+    
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .mobile-menu-footer {
+        margin-top: 15px;
+        display: flex;
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    /* --- CAROUSEL STYLES (ХЭВЭЭРЭЭ) --- */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--main-pink) 0%, #ffd6e8 100%);
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .carousel-slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .carousel-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      padding: 20px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .carousel-content h1 {
+      font-size: 3em;
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .carousel-content p {
+      font-size: 1.5em;
+      margin: 10px 0;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .carousel-btn {
+      background-color: var(--hot-pink);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .carousel-btn:hover {
+      background-color: #c0457f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: white;
+      transform: scale(1.3);
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255,255,255,0.3);
+      color: white;
+      border: none;
+      font-size: 2em;
+      padding: 10px 15px;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease;
+      border-radius: 5px;
+    }
+
+    .carousel-arrow:hover {
+      background-color: rgba(255,255,255,0.5);
+    }
+
+    .carousel-arrow.prev { left: 10px; }
+    .carousel-arrow.next { right: 10px; }
+
+    /* --- MARQUEE --- */
+    .announcement {
+      background-color: var(--main-pink);
+      color: #8a124b;
+      font-weight: bold;
+      padding: 10px 0;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .announcement-text {
+      display: inline-block;
+      animation: scroll 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* --- LAYOUT --- */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .sidebar {
+      flex: 0 0 250px;
+      background-color: var(--white);
+      padding: 20px;
+      border-right: 1px solid #f1b6c6;
+      min-height: 100vh;
+      animation: slideInLeft 0.6s ease-out;
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .sidebar h3 {
+      color: var(--hot-pink);
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.2em;
+    }
+
+    .category-list { list-style: none; padding-left: 0; }
+
+    .category-item {
+      margin-bottom: 10px;
+      animation: fadeIn 0.5s ease-out;
+      animation-fill-mode: backwards;
+    }
+
+    .category-item:nth-child(1) { animation-delay: 0.1s; }
+    .category-item:nth-child(2) { animation-delay: 0.2s; }
+    .category-item:nth-child(3) { animation-delay: 0.3s; }
+    .category-item:nth-child(4) { animation-delay: 0.4s; }
+    .category-item:nth-child(5) { animation-delay: 0.5s; }
+    .category-item:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .category-item > details {
+      background: var(--light-pink);
+      border-radius: 12px;
+      border: 1px solid #f0a2be;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .category-item > details[open] {
+      background-color: var(--white);
+      border-color: var(--hot-pink);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      animation: expandDetails 0.3s ease-out;
+    }
+
+    @keyframes expandDetails {
+      from { transform: scale(0.95); }
+      to { transform: scale(1); }
+    }
+
+    .category-item summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: #8a124b;
+      transition: color 0.3s ease;
+    }
+
+    .category-item summary:hover { color: var(--hot-pink); }
+
+    .category-item ul {
+      margin-top: 8px;
+      padding-left: 18px;
+      list-style-type: circle;
+    }
+
+    .category-item ul li {
+      margin: 5px 0;
+      transition: transform 0.2s ease;
+    }
+    
+    .category-item ul li a {
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+    
+    .category-item ul li:hover { transform: translateX(5px); }
+
+    select {
+      margin-top: 5px;
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #f0a2be;
+      border-radius: 8px;
+      background-color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    select:hover { border-color: var(--hot-pink); box-shadow: 0 2px 4px rgba(233,91,154,0.1); }
+    select:focus { outline: none; border-color: var(--hot-pink); box-shadow: 0 0 0 3px rgba(233,91,154,0.1); }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 30px;
+      min-width: 0;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      animation: fadeInGrid 0.8s ease-out;
+    }
+
+    @keyframes fadeInGrid { from { opacity: 0; } to { opacity: 1; } }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid #f1b6c6;
+      text-align: center;
+      padding: 15px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .product-card:hover::before { left: 100%; }
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 20px rgba(233,91,154,0.3);
+      border-color: var(--hot-pink);
+    }
+
+    .product-card img {
+      border-radius: 12px;
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img { transform: scale(1.05); }
+
+    .product-card h2 {
+      color: var(--hot-pink);
+      margin: 15px 0 10px;
+      font-size: 1.3em;
+      transition: color 0.3s ease;
+    }
+
+    .product-card:hover h2 { color: #c0457f; }
+
+    /* Pagination */
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 50px 0 40px;
+      gap: 12px;
+    }
+
+    .pagination {
+      list-style: none;
+      display: flex;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .pagination li { display: inline-block; }
+
+    .pagination a, .pagination span {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #fff;
+      color: #222;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .pagination a:hover {
+      background-color: var(--main-pink);
+      border-color: var(--hot-pink);
+      transform: translateY(-2px);
+    }
+
+    .pagination li.active a {
+      background-color: var(--hot-pink);
+      color: white;
+      border-color: var(--hot-pink);
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--white);
+      border-top: 2px solid var(--main-pink);
+      padding: 40px 10%;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    footer table { width: 100%; }
+    footer a { color: var(--text-dark); transition: all 0.3s ease; text-decoration: none;}
+    footer a:hover { color: var(--hot-pink); padding-left: 5px; }
+
+    input[type=email], input[type=submit] {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #f1b6c6;
+      transition: all 0.3s ease;
+    }
+
+    input[type=email]:focus {
+      outline: none;
+      border-color: var(--hot-pink);
+      box-shadow: 0 0 0 3px rgba(233,91,154,0.1);
+    }
+
+    input[type=submit] {
+      background-color: var(--hot-pink);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: #c0457f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Scroll to Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--hot-pink);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5em;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+
+    .scroll-top.visible { opacity: 1; visibility: visible; }
+    .scroll-top:hover { background-color: #c0457f; transform: translateY(-5px); }
+
+    /* Loading Animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(233,91,154,0.3);
+      border-radius: 50%;
+      border-top-color: var(--hot-pink);
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+
+    /* --- RESPONSIVE DESIGN (ШИНЭЧЛЭГДСЭН) --- */
+    @media screen and (max-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+      .sidebar { flex: 0 0 220px; }
+      .carousel-content h1 { font-size: 2.5em; }
+      .carousel-content p { font-size: 1.2em; }
+    }
+
+    /* Mobile View - Энд гол өөрчлөлтүүд орсон */
+    @media screen and (max-width: 768px) {
+      
+      /* Header бүтцийг гар утсанд тохируулах */
+      .header-container {
+        padding: 0 20px;
+      }
+
+      /* Компьютерийн цэсийг нуух */
+      .desktop-nav {
+        display: none;
+      }
+
+      /* Нэвтрэх болон Хайх товчийг нуух (Зөвхөн сагс үлдээнэ) */
+      .desktop-only {
+        display: none !important;
+      }
+
+      /* Цэсний товчийг ил гаргаж, зүүн талд байршуулна */
+      .mobile-menu-btn {
+        display: block;
+        order: 1;
+        flex: 0 0 40px; /* Хэмжээг хязгаарлах */
+        text-align: left;
+      }
+
+      /* Логог гол хэсэгт байршуулна */
+      .logo-container {
+        order: 2;
+        flex: 1;
+      }
+      
+      .logo-container img {
+        height: 40px; /* Логог бага зэрэг жижигрүүлэх */
+      }
+
+      /* Сагсыг баруун талд байршуулна */
+      .header-icons {
+        order: 3;
+        flex: 0 0 40px; /* Хэмжээг хязгаарлах */
+        justify-content: flex-end;
+      }
+
+      /* Бусад Responsive тохиргоонууд */
+      .container { flex-direction: column; }
+      .sidebar { border-right: none; border-bottom: 2px solid var(--main-pink); flex: 1 1 auto; min-height: auto; }
+      .main { padding: 20px; }
+      .carousel-container { height: 300px; }
+      .carousel-content h1 { font-size: 2em; }
+      .carousel-content p { font-size: 1em; }
+      .carousel-btn { padding: 10px 20px; font-size: 0.9em; }
+      .carousel-arrow { font-size: 1.5em; padding: 8px 12px; }
+      .product-card img { height: 250px; }
+      .product-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+      
+      footer { padding: 30px 5%; }
+      footer table, footer table tr, footer table td { display: block; width: 100% !important; margin-bottom: 20px; }
+    }
+
+    @media screen and (max-width: 480px) {
+      .carousel-container { height: 250px; }
+      .carousel-content h1 { font-size: 1.5em; }
+      .carousel-content p { font-size: 0.9em; }
+      .product-card img { height: 200px; }
+      .product-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER SECTION (ШИНЭ БҮТЭЦ) -->
+  <header>
+    <div class="header-container">
+      <!-- Mobile Menu Button (Гар утсан дээр харагдана, зүүн талд) -->
+      <button class="mobile-menu-btn" onclick="toggleMenu()">
+        ☰
+      </button>
+
+      <!-- Desktop Navigation (Компьютер дээр харагдана) -->
+      <nav class="desktop-nav">
+        <b><a href="main.html">ЦЭС</a></b>
+        <a href="women.html">Эмэгтэй</a>
+        <a href="index.html">Хүүхэд</a>
+        <a href="new-arrivals.html">Шинэ</a>
+        <a href="sale.html">Хямдрал</a>
+      </nav>
+
+      <!-- Logo (Гол хэсэгт) -->
+      <div class="logo-container">
+        <a href="main.html">
+          <img src="/zurag/logo.png" alt="Luma Atelier Logo" />
+        </a>
+      </div>
+
+           <!-- Right Icons (Баруун талд) -->
+      <div class="header-icons">
+        <a href="#" class="desktop-only">
+            <img src="/zurag/search.png" width="24" alt="Search">
+        </a>
+        <a href="sagslah.html" class="desktop-only">
+            <img src="/zurag/cart.png" width="24" alt="Cart">
+        </a> 
+        <a href="login.html">
+            <img src="/zurag/log.png" width="24" alt="Login">
+        </a>
+      </div>
+
+    </div>
+    
+    <!-- Mobile Dropdown Menu Content -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="main.html">ЦЭС</a>
+      <a href="women.html">Эмэгтэй хувцас</a>
+      <a href="index.html">Хүүхдийн хувцас</a>
+      <a href="new-arrivals.html">Шинэ бүтээгдэхүүн</a>
+      <a href="sale.html">Хямдрал</a>
+    </div>
+  </header>
+
+  <div class="announcement">
+    <div class="announcement-text">🌸 Luma Atelier – бүх бараа 50% хямдарлаа! Зөвхөн өнөөдөр 🌸 | Үнэгүй хүргэлт 100,000₮ дээш захиалгад 🌸</div>
+  </div>
+
+  <!-- Carousel Section -->
+  <div class="carousel-container">
+    <div class="carousel" id="carousel">
+      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200');">
+        <div class="carousel-content">
+          <h1>Шинэ цуглуулга</h1>
+          <p>2025 оны хаврын загвар</p>
+          <button class="carousel-btn" onclick="location.href='new-arrivals.html'">Худалдан авах</button>
+        </div>
+      </div>
+      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200');">
+        <div class="carousel-content">
+          <h1>50% Хямдрал</h1>
+          <p>Бүх бараанд зориулсан</p>
+          <button class="carousel-btn" onclick="location.href='sale.html'">Үзэх</button>
+        </div>
+      </div>
+      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200');">
+        <div class="carousel-content">
+          <h1>Хүүхдийн хувцас</h1>
+          <p>Эрүүл, тав тухтай загвар</p>
+          <button class="carousel-btn" onclick="location.href='#kids'">Худалдан авах</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-arrow prev" onclick="moveSlide(-1)">❮</button>
+    <button class="carousel-arrow next" onclick="moveSlide(1)">❯</button>
+
+    <div class="carousel-dots">
+      <span class="dot active" onclick="currentSlide(0)"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+  </div>
+
+  <div class="container">
+        <aside class="sidebar">
+      <h3>АНГИЛАЛ</h3>
+      <ul class="category-list">
+        <!-- 1. Эмэгтэй хувцас (open-ийг хассан) -->
+        <li class="category-item">
+          <details>
+            <summary>Эмэгтэй хувцас</summary>
+            <select>
+              <option>NIKE</option>
+              <option>ADIDAS</option>
+              <option>ASICS</option>
+            </select>
+            <ul>
+              <li><a href="#women-tops">Цамц</a></li>
+              <li><a href="#women-pants">Өмд & Шорт</a></li>
+              <li><a href="#women">Футболка & Майк</a></li>
+              <li><a href="#women">Гадуур хувцас</a></li>
+              <li><a href="#women">Даашинз</a></li>
+              <li><a href="#women-shoes">Гутал</a></li>
+              <li><a href="#women">Хослол & Дан хүрэм</a></li>
+            </ul>
+          </details>
+        </li>
+
+        <!-- 2. Хүүхдийн хувцас (open-ийг хассан) -->
+        <li class="category-item">
+          <details>
+            <summary>Хүүхдийн хувцас</summary>
+            <select>
+              <option>NIKE</option>
+              <option>ADIDAS</option>
+              <option>ASICS</option>
+            </select>
+            <select>
+              <option>Хүүхдийн эрэгтэй</option>
+              <option>Хүүхдийн эмэгтэй</option>
+            </select>
+            <ul>
+              <li><a href="#kids">Өмд & Шорт</a></li>
+              <li><a href="#kidsjacket">Гадуур хувцас</a></li>
+              <li><a href="#kidsshoes">Гутал</a></li>
+              <li><a href="#kidsnew">Шинэ хүүхдийн хувцас</a></li>
+              <li><a href="#kids">Хослол & Дан хүрэм</a></li>
+              <li><a href="#kids">Үндэсний хувцас</a></li>
+              <li><a href="#kids">Футболка & Майк</a></li>
+              <li><a href="#kids">Цамц</a></li>
+            </ul>
+          </details>
+        </li>
+
+        <!-- 3. Спорт хувцас (open-ийг хассан) -->
+        <li class="category-item">
+          <details>
+            <summary>Спорт хувцас</summary>
+            <select>
+              <option>NIKE</option>
+              <option>ADIDAS</option>
+              <option>ASICS</option>
+            </select>
+            <select>
+              <option>Эрэгтэй</option>
+              <option>Эмэгтэй</option>
+            </select>
+            <ul>
+              <li><a href="#sport">Өмд & Шорт</a></li>
+              <li><a href="#sport">Гутал</a></li>
+              <li><a href="#sport">Хослол</a></li>
+              <li><a href="#sport">Футболка & Майк</a></li>
+              <li><a href="#sport">Цамц</a></li>
+            </ul>
+          </details>
+        </li>
+
+        <!-- 4. Цүнх & Хэтэвч (open-ийг хассан) -->
+        <li class="category-item">
+          <details>
+            <summary>Цүнх & Хэтэвч</summary>
+            <select>
+              <option>YSL</option>
+              <option>GUCCI</option>
+              <option>LV</option>
+            </select>
+            <select>
+              <option>Цүнх</option>
+              <option>Хэтэвч</option>
+            </select>
+          </details>
+        </li>
+
+        <!-- 5. Гоёл чимэглэл (open-ийг хассан) -->
+        <li class="category-item">
+          <details>
+            <summary>Гоёл чимэглэл</summary>
+            <select>
+              <option>Бөгж</option>
+              <option>Зүүлт</option>
+              <option>Ээмэг</option>
+            </select>
+          </details>
+        </li>
+
+        <!-- 6. Цахилгаан бараа (open-ийг хассан) -->
+        <li class="category-item">
+          <details>
+            <summary>Цахилгаан бараа</summary>
+            <select>
+              <option>Samsung</option>
+              <option>Apple</option>
+            </select>
+          </details>
+        </li>
+      </ul>
+    </aside>
+
+
+    <main class="main">
+      <div class="product-grid">
+        <div class="product-card">
+          <h2>Шинээр ирсэн</h2>
+          <a href="#new-arrivals"><img src="https://i.pinimg.com/736x/8c/36/f2/8c36f26cb4ac40cb84fb852fe74c7505.jpg" alt="Шинэ бүтээгдэхүүн"></a>
+        </div>
+
+        <div class="product-card">
+          <h2>Хямдралтай бараа</h2>
+          <a href="#sale"><img src="https://i.pinimg.com/736x/45/60/3c/45603c2cf3234947ba9c776000091272.jpg" alt="Хямдрал"></a>
+        </div>
+
+        <div class="product-card">
+          <h2>Хүүхдийн хувцас</h2>
+          <a href="#kids"><img src="https://i.pinimg.com/1200x/c9/b2/b7/c9b2b7406637ec3a2549cee720f1b3d4.jpg" alt="Хүүхэд"></a>
+        </div>
+
+        <div class="product-card">
+          <h2>Эмэгтэй хувцас</h2>
+          <a href="#women"><img src="https://i.pinimg.com/736x/84/3b/48/843b48fdcc61d3566f2dcc2bdca2e99b.jpg" alt="Эмэгтэй"></a>
+        </div>
+
+        <div class="product-card">
+          <h2>Цүнх & Хэтэвч</h2>
+          <a href="#bags"><img src="https://i.pinimg.com/1200x/00/8b/e1/008be161aeb8313f48c63c38659cde5e.jpg" alt="Цүнх"></a>
+        </div>
+
+        <div class="product-card">
+          <h2>Гоёл чимэглэл</h2>
+          <a href="#jewelry"><img src="https://i.pinimg.com/1200x/fd/9e/b1/fd9eb1bdf288e4df98392b64a85d3371.jpg" alt="Гоёл чимэглэл"></a>
+        </div>
+
+        <div class="product-card">
+          <h2>Цахилгаан бараа</h2>
+          <a href="#electronics"><img src="https://i.pinimg.com/736x/68/08/bc/6808bc36e45c47d3510a462190f8f231.jpg" alt="Цахилгаан"></a>
+        </div>
+
+        <div class="product-card">
+          <h2>Спорт хувцас</h2>
+          <a href="#sport"><img src="https://i.pinimg.com/736x/50/29/bf/5029bf4342e8e4ca79b37f0f2516919f.jpg" alt="Спорт"></a>
+        </div>
+      </div>
+
+      <div class="pagination-container">
+        <ul class="pagination">
+          <li class="active"><a href="#all">Бүгдийг үзэх</a></li>
+        </ul>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <table>
+      <tr>
+        <td width="25%">
+          <b>LUMA ATELIER</b><br><br>
+          Тансаг, эмэгтэйлэг хэв маягийн дэлгүүр — таны гоо сайхны толь.
+        </td>
+        <td width="25%">
+          <b>ХОЛБООСУУД</b><br><br>
+          <a href="#home">Нүүр хуудас</a><br>
+          <a href="#all">Бүх бараа</a><br>
+          <a href="#new">Шинээр ирсэн</a><br>
+          <a href="#sale">Хямдрал</a>
+        </td>
+        <td width="25%">
+          <b>ҮЙЛЧИЛГЭЭ</b><br><br>
+          <a href="#about">Бидний тухай</a><br>
+          <a href="#location">Хаяг байршил</a><br>
+          <a href="#privacy">Нууцлалын бодлого</a><br>
+          <a href="#contact">Бидэнтэй холбогдох</a>
+        </td>
+        <td width="25%">
+          <b>МЭДЭЭЛЭЛ АВАХ</b><br><br>
+          <form onsubmit="handleNewsletter(event)">
+            <input type="email" id="newsletter-email" placeholder="И-мэйл хаяг" size="25" required><br><br>
+            <input type="submit" value="ИЛГЭЭХ">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <center><p>©2025 Luma Atelier</p></center>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+  <script>
+    
+    /* --- ШИНЭ ФУНКЦ: Гар утасны цэс нээж хаах --- */
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+      
+      const btn = document.querySelector('.mobile-menu-btn');
+      if (menu.classList.contains('active')) {
+        btn.innerHTML = '✕'; // Хаах
+      } else {
+        btn.innerHTML = '☰'; // Цэс
+      }
+    }
+
+    // Carousel functionality
+    let currentSlideIndex = 0;
+    const carousel = document.getElementById('carousel');
+    const dots = document.querySelectorAll('.dot');
+    let autoSlideInterval;
+
+    function moveSlide(direction) {
+      const slides = document.querySelectorAll('.carousel-slide');
+      currentSlideIndex += direction;
+
+      if (currentSlideIndex >= slides.length) {
+        currentSlideIndex = 0;
+      } else if (currentSlideIndex < 0) {
+        currentSlideIndex = slides.length - 1;
+      }
+
+      updateCarousel();
+      resetAutoSlide();
+    }
+
+    function currentSlide(index) {
+      currentSlideIndex = index;
+      updateCarousel();
+      resetAutoSlide();
+    }
+
+    function updateCarousel() {
+      const offset = -currentSlideIndex * 100;
+      carousel.style.transform = `translateX(${offset}%)`;
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlideIndex);
+      });
+    }
+
+    function autoSlide() {
+      moveSlide(1);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(autoSlide, 5000);
+    }
+
+    // Start auto-sliding
+    resetAutoSlide();
+
+    // Scroll to top functionality
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Newsletter form handler
+    function handleNewsletter(event) {
+      event.preventDefault();
+      const email = document.getElementById('newsletter-email').value;
+      alert('Баярлалаа! ' + email + ' хаягаар мэдээлэл илгээх болно.');
+      event.target.reset();
+    }
+
+    // Product card click animation
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'A' && e.target.tagName !== 'IMG') {
+          const link = this.querySelector('a');
+          if (link) {
+            link.click();
+          }
+        }
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe product cards
+    document.querySelectorAll('.product-card').forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+      observer.observe(card);
+    });
+
+    // Add loading animation when images load
+    document.querySelectorAll('.product-card img').forEach(img => {
+      img.addEventListener('load', function() {
+        this.style.animation = 'fadeIn 0.5s ease-out';
+      });
+    });
+  </script>
+
+</body>
+</html>

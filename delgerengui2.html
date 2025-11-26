@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="mn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Эмэгтэй хувцас | Luma Atelier</title>
+    <style>
+      /* ==== PINK THEME ТОДОРХОЙЛОЛТ ==== */
+      :root {
+        --main-pink: #f9c9d6;
+        --hot-pink: #e95b9a;
+        --text-dark: #333;
+        --white: #fff;
+      }
+
+      body {
+        font-family: "Poppins", "Segoe UI", sans-serif;
+        margin: 0;
+        background-color: var(--light-pink);
+        color: var(--text-dark);
+      }
+
+      /* ==== HEADER ==== */
+      header {
+        background-color: var(--white);
+        border-bottom: 2px solid var(--main-pink);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      header table {
+        width: 100%;
+        padding: 10px 0;
+        border-collapse: collapse;
+      }
+      a {
+        text-decoration: none;
+        color: var(--text-dark);
+        transition: 0.3s;
+      }
+      a:hover {
+        color: var(--hot-pink);
+      }
+      marquee {
+        background-color: var(--main-pink);
+        color: #8a124b;
+        font-weight: bold;
+        padding: 5px 0;
+      }
+
+      /* ==== LAYOUT ==== */
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      /* ==== SIDEBAR ==== */
+      .sidebar {
+        flex: 1 1 250px;
+        background-color: var(--white);
+        padding: 20px;
+        border-right: 1px solid #f1b6c6;
+        min-height: 100vh;
+      }
+      .sidebar h3 {
+        color: var(--hot-pink);
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .category-list {
+        list-style: none;
+        padding-left: 0;
+      }
+      .category-item > details {
+        background: var(--light-pink);
+        border-radius: 12px;
+        border: 1px solid #f0a2be;
+        padding: 10px;
+      }
+      .category-item > details[open] {
+      background-color: var(--white);
+      border-color: var(--hot-pink);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
+      .category-item summary {
+        font-weight: bold;
+        cursor: pointer;
+        color: #8a124b;
+      }
+      .category-item ul {
+        margin-top: 8px;
+        padding-left: 18px;
+        list-style-type: circle;
+      }
+
+      /* ==== MAIN CONTENT ==== */
+      .main {
+        flex: 3;
+        padding: 40px;
+      }
+      .main h2 {
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      /* ==== PRODUCT GRID (black-red style) ==== */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 25px;
+      }
+
+      .product-card {
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .product-card h3 {
+        font-size: 18px;
+        color: #111;
+        margin: 10px 0 5px;
+      }
+
+      .product-card p {
+        font-size: 14px;
+        color: #555;
+        min-height: 40px;
+      }
+
+      .price {
+        color: red;
+        font-weight: bold;
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      .cart-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cart-section input {
+        width: 50px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 3px;
+      }
+
+      .add-btn {
+        background-color: #e40000;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 7px 14px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      select {
+        margin-top: 5px;
+        width: 100%;
+        padding: 6px;
+        border: 1px solid #f0a2be;
+        border-radius: 8px;
+        background-color: #fff;
+      }
+
+      .add-btn:hover {
+        background-color: #b30000;
+      }
+      .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 60px 0 40px;
+        gap: 12px;
+      }
+
+      .page-label {
+        font-weight: bold;
+        color: #b80000;
+        font-size: 18px;
+        background-color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        border: 1px solid #fff;
+        box-shadow: none;
+      }
+      /* ==== CSS-д НЭМЭХ ХЭСЭГ ==== */
+
+
+     .detail-btn {
+        background-color: var(--white); /* Цагаан фон */
+        color: var(--hot-pink); /* Ягаан текст */
+        border: 1px solid var(--hot-pink); /* Ягаан хүрээ */
+        border-radius: 6px;
+        padding: 7px 14px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+        text-decoration: none; /* Холбоосын доорх зураасыг арилгана */
+     }
+
+     .detail-btn:hover {
+        background-color: var(--hot-pink); /* Хувиргахад фон нь ягаан болно */
+        color: var(--white); /* Текст нь цагаан болно */
+     }
+
+/* cart-section-ийн загварыг сайжруулах */
+     .cart-section {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Элементүүд хоорондын зайг нэмнэ */
+        margin-top: 10px; /* Дээд талын зай */
+        flex-wrap: wrap; /* Жижиг дэлгэц дээр доошоо орох боломжтой болгоно */
+     }
+
+/* Тоо хэмжээний оролтын зайг тохируулах */
+     .cart-section label {
+        white-space: nowrap;
+     }
+
+      .pagination {
+        list-style: none;
+        display: flex;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .pagination li {
+        display: inline-block;
+      }
+
+      .pagination a,
+      .pagination span {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: #fff;
+        color: #222;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .pagination a:hover {
+        border-color: #d10000;
+        color: #d10000;
+      }
+
+      .pagination li.active a {
+        background-color: #d10000;
+        color: white;
+        border-color: #d10000;
+        font-weight: bold;
+      }
+
+      .pagination li:last-child a {
+        font-weight: bold;
+      }
+
+      /* ==== FOOTER ==== */
+      footer {
+      background-color: var(--white);
+      border-top: 2px solid var(--main-pink);
+      padding: 40px 10%;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    footer table {
+      width: 100%;
+    }
+
+    footer a {
+      color: var(--text-dark);
+    }
+
+    footer a:hover {
+      color: var(--hot-pink);
+    }
+
+    input[type=email], input[type=submit] {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #f1b6c6;
+    }
+
+    input[type=submit] {
+      background-color: var(--hot-pink);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type=submit]:hover {
+      background-color: #c0457f;
+    }
+
+          .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 150px 0 40px;
+        gap: 12px;
+      }
+
+      .page-label {
+        font-weight: bold;
+        color: #b80000;
+        font-size: 18px;
+        background-color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        border: 1px solid #fff;
+        box-shadow: none;
+      }
+
+      .pagination {
+        list-style: none;
+        display: flex;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .pagination li {
+        display: inline-block;
+      }
+
+      .pagination a,
+      .pagination span {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: #fff;
+        color: #222;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+
+
+      .pagination li.active a {
+        background-color: #d10000;
+        color: white;
+        border-color: #d10000;
+        font-weight: bold;
+      }
+
+      /* ==== Responsive ==== */
+      @media screen and (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+        .sidebar {
+          border-right: none;
+          border-bottom: 2px solid var(--main-pink);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <table>
+        <tr>
+          <td style="width: 33%; padding-left: 40px; text-align: left">
+            <b><a href="main.html">ЦЭС</a></b> &nbsp;
+            <a href="women.html">Эмэгтэй</a> &nbsp;
+            <a href="index.html">Хүүхэд</a> &nbsp;
+            <a href="new-arrivals.html">Шинэ бүтээгдэхүүн</a> &nbsp;
+            <a href="sale.html">Хямдралтай</a>
+          </td>
+          <td style="width: 33%; text-align: center">
+            <a href="main.html">
+              <img
+                src="/zurag/logo.png"
+                alt="Logo"
+                style="width: 120px; height: auto"
+              />
+            </a>
+          </td>
+          <td style="width: 33%; text-align: right; padding-right: 40px">
+            <a href="#"
+              ><img src="/zurag/search.png" width="24" height="24"
+            /></a>
+            &nbsp;&nbsp;
+            <a href="sagslah.html"
+              ><img src="/zurag/cart.png" width="24" height="24"
+            /></a>
+            &nbsp;&nbsp;
+            <a href="login.html"
+              ><img src="/zurag/log.png" width="24" height="24"
+            /></a>
+          </td>
+        </tr>
+      </table>
+    </header>
+
+    <marquee
+      >🌸 Luma Atelier – бүх бараа 50% хямдарлаа! Зөвхөн өнөөдөр 🌸</marquee
+    >
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <h3>АНГИЛАЛ</h3>
+        <ul class="category-list">
+          <li class="category-item">
+            <details open>
+              <summary>Эмэгтэй хувцас</summary>
+              <select>
+                <option>NIKE</option>
+                <option>ADIDAS</option>
+                <option>ASICS</option>
+              </select>
+              <ul>
+                <li><a href="women-tops.html">Цамц</a></li>
+                <li><a href="women-pants.html">Өмд & Шорт</a></li>
+                <li><a href="women-outerwear.html">Гадуур хувцас</a></li>
+                <li><a href="women-shoes.html">Гутал</a></li>
+                <li><a href="women-accessories.html">Гоёл</a></li>
+              </ul>
+            </details>
+          </li>
+
+          <li class="category-item">
+            <details open>
+              <summary>Хүүхдийн хувцас</summary>
+              <select>
+                <option>NIKE</option>
+                <option>ADIDAS</option>
+                <option>ASICS</option>
+              </select>
+              <ul>
+                <li><a href="kids.html">Өмд & Шорт</a></li>
+                <li><a href="kidsjacket.html">Гадуур хувцас</a></li>
+                <li><a href="kidsshoes.html">Гутал</a></li>
+                <li><a href="kidsnew.html">Шинэ хүүхдийн хувцас</a></li>
+                <li><a href="#">Хослол & Дан хүрэм</a></li>
+                <li><a href="#">Үндэсний хувцас</a></li>
+                <li><a href="#">Футболка & Майк</a></li>
+                <li><a href="#">Цамц</a></li>
+              </ul>
+            </details>
+          </li>
+
+          <li class="category-item">
+            <details open>
+              <summary>Цүнх & Хэтэвч</summary>
+              <select>
+                <option>YSL</option>
+                <option>GUCCI</option>
+                <option>LV</option>
+              </select>
+              <select>
+                <option>Цүнх</option>
+                <option>Хэтэвч</option>
+              </select>
+            </details>
+          </li>
+
+          <li class="category-item">
+            <details open>
+              <summary>Гоёл чимэглэл</summary>
+              <select>
+                <option>Бөгж</option>
+                <option>Зүүлт</option>
+                <option>Ээмэг</option>
+              </select>
+            </details>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main">
+        <h2>
+          ЭМЭГТЭЙ ЦУВ <span style="color: gray">(128 БҮТЭЭГДЭХҮҮН)</span>
+        </h2>
+
+        <div class="product-grid">
+          <!-- Бараа 1 -->
+          <div class="product-card">
+            <img
+              src="https://assets.manufactum.de/p/068/068675/68675_01.jpg/?profile=pdsmain_750"
+              
+            />
+            <h3>Цув</h3>
+            <p>загварлаг</p>
+            <div class="price">355,000₮</div>
+            <div class="cart-section">
+              <label>Тоо:</label>
+              <input type="number" min="1" value="1" />
+              <button class="add-btn">САГСАНД НЭМЭХ</button>
+             
+            </div>
+          </div>
+
+          <!-- Бараа 2 -->
+          <div class="product-card">
+            <img
+              src="https://assets.manufactum.de/p/204/204533/204533_01.jpg/ladies-parking-coat-etaproof.jpg?profile=produktliste_400"
+              
+            />
+            <h3>Цув</h3>
+            <p>Өдөр тутмын хэрэглээнд тохиромжтой</p>
+            <div class="price">245,000₮</div>
+            <div class="cart-section">
+              <label>Тоо:</label>
+              <input type="number" min="1" value="1" />
+              <button class="add-btn">САГСАНД НЭМЭХ</button>
+             
+            </div>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://cdnp.cody.mn/spree/images/3169549/zoom/open-uri20250819-337496-y5zaro."
+              alt="Oversize өмд"
+            />
+            <h3>Цув</h3>
+            <p>W NUPTSE SHORT JACKET</p>
+            <div class="price">285,000₮</div>
+            <div class="cart-section">
+              <label>Тоо:</label>
+              <input type="number" min="1" value="1" />
+              <button class="add-btn">САГСАНД НЭМЭХ</button>
+              
+            </div>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://i.pinimg.com/736x/6c/35/45/6c3545e8513d77f2cd5a44f2ffaca42b.jpg"
+              alt="Oversize өмд"
+            />
+            <h3>Цув</h3>
+            <p>W HMLYN DOWN PARKA</p>
+            <div class="price">455,000₮</div>
+            <div class="cart-section">
+              <label>Тоо:</label>
+              <input type="number" min="1" value="1" />
+              <button class="add-btn">САГСАНД НЭМЭХ</button>
+              
+            </div>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://i.pinimg.com/1200x/74/e2/08/74e20851e71c2b7a1ca130828d3f72f6.jpg"
+              alt="Oversize өмд"
+            />
+            <h3>Цув</h3>
+            <p>Outerwear Calliope Bianco lana Winter</p>
+            <div class="price">365,000₮</div>
+            <div class="cart-section">
+              <label>Тоо:</label>
+              <input type="number" min="1" value="1" />
+              <button class="add-btn">САГСАНД НЭМЭХ</button>
+             
+            </div>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://i.pinimg.com/736x/d9/77/36/d9773642b15e3a596ac128dc15e122ae.jpg"
+              alt="Oversize өмд"
+            />
+            <h3>Цув</h3>
+            <p>Expedition Long Down Parka W</p>
+            <div class="price">535,000₮</div>
+            <div class="cart-section">
+              <label>Тоо:</label>
+              <input type="number" min="1" value="1" />
+              <button class="add-btn">САГСАНД НЭМЭХ</button>
+              
+            </div>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://i.pinimg.com/736x/fb/69/da/fb69da54acfb891febcdcc391d7ea87c.jpg"
+              alt="Oversize өмд"
+            />
+            <h3>Цув</h3>
+            <p>Энгийн, өдөр тутмын хэрэглээнд тохиромжтой.</p>
+            <div class="price">795,000₮</div>
+            <div class="cart-section">
+              <label>Тоо:</label>
+              <input type="number" min="1" value="1" />
+              <button class="add-btn">САГСАНД НЭМЭХ</button>
+              
+            </div>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://i.pinimg.com/1200x/23/f3/73/23f373662edaaa703ad4663eca97029a.jpg"
+              alt="Oversize өмд"
+            />
+            <h3>Цув</h3>
+            <p>Outerwear Calliope Bianco panna</p>
+            <div class="price">685,000₮</div>
+            <div class="cart-section">
+              <label>Тоо:</label>
+              <input type="number" min="1" value="1" />
+              <button class="add-btn">САГСАНД НЭМЭХ</button>
+              
+            </div>
+          </div>
+          <div class="pagination">
+                <b>Хуудас:</b>
+                <b class="current-page">1</b>
+                <a href="#2">2</a>
+                <a href="#3">3</a>
+                <a href="#4">...</a>
+                <a href="#10">10</a>
+                <a href="#">Дараах &rarr;</a>
+            </div>
+            
+        </div>
+    </div>
+    <footer>
+    <table>
+      <tr>
+        <td width="25%">
+          <b>LUMA ATELIER</b><br><br>
+          Тансаг, эмэгтэйлэг хэв маягийн дэлгүүр — таны гоо сайхны толь.
+        </td>
+        <td width="25%">
+          <b>ХОЛБООСУУД</b><br><br>
+          <a href="main.html">Нүүр хуудас</a><br>
+          <a href="view-all.html">Бүх бараа</a><br>
+          <a href="new-arrivals.html">Шинээр ирсэн</a><br>
+          <a href="sale.html">Хямдрал</a>
+        </td>
+        <td width="25%">
+          <b>ҮЙЛЧИЛГЭЭ</b><br><br>
+          <a href="who_are_we.html">Бидний тухай</a><br>
+          <a href="location.html">Хаяг байршил</a><br>
+          <a href="login.html">Нууцлалын бодлого</a><br>
+          <a href="mail_us.html">Бидэнтэй холбогдох</a>
+        </td>
+        <td width="25%">
+          <b>МЭДЭЭЛЭЛ АВАХ</b><br><br>
+          <form>
+            <input type="email" placeholder="И-мэйл хаяг" size="25"><br><br>
+            <input type="submit" value="ИЛГЭЭХ">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <center><p>©2025 Luma Atelier</p></center>
+  </footer>
+
+</body>
+</html>
+
+    

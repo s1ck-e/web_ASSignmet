@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бидэнтэй холбогдох - Luma Atelier</title>
+
+  <style>
+    :root {
+      --main-pink: #f9c9d6;
+      --hot-pink: #e95b9a;
+      --text-dark: #333;
+      --white: #fff;
+    }
+
+  
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      background: white;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: #d63384;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+  
+    header {
+      background: white;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    header table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    header td {
+      vertical-align: middle;
+      font-size: 15px;
+      padding: 20px;
+    }
+
+    header a {
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    header a:hover {
+      color: #d63384;
+    }
+
+  
+    main {
+      padding: 60px 20px;
+      background: linear-gradient(180deg, #ffe9f1 0%, #fff 100%);
+      min-height: 70vh;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 15px;
+      font-size: 36px;
+    }
+
+    .intro-text {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+
+  
+    form {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      max-width: 600px;
+      margin: 0 auto 50px;
+    }
+
+    fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    legend {
+      font-size: 20px;
+      color: #d63384;
+      margin-bottom: 20px;
+      text-align: center;
+      width: 100%;
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #d63384;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    select {
+      cursor: pointer;
+      background-color: white;
+    }
+
+  
+    .consent-box {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
+  
+    button {
+      background: #d63384;
+      color: white;
+      border: none;
+      padding: 12px 35px;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 5px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #b62b6f;
+    }
+
+    button[type="reset"] {
+      background: #999;
+    }
+
+    button[type="reset"]:hover {
+      background: #777;
+    }
+
+    .button-group {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Холбоо барих мэдээлэл */
+    .contact-info {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .contact-info h2 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
+
+    .info-grid {
+      display: flex;
+      justify-content: space-around;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .info-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+    }
+
+    .info-card h3 {
+      color: #d63384;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .info-card p {
+      color: #666;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #f1b6c6;
+      margin: 40px auto;
+      max-width: 600px;
+    }
+
+    /* Footer */
+ 
+    footer {
+      background-color: var(--white);
+      border-top: 2px solid var(--main-pink);
+      padding: 40px 10%;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    footer table {
+      width: 100%;
+    }
+
+    footer a {
+      color: var(--text-dark);
+    }
+
+    footer a:hover {
+      color: var(--hot-pink);
+    }
+
+    input[type=email], input[type=submit] {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #f1b6c6;
+    }
+
+    input[type=submit] {
+      background-color: var(--hot-pink);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type=submit]:hover {
+      background-color: #c0457f;
+    }
+
+
+    footer form,
+footer table,
+footer div,
+input[type=email],
+input[type=submit] {
+  box-shadow: none !important;
+  filter: none !important;
+  border-collapse: collapse !important;
+  outline: none !important;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <table>
+      <tr>
+        <td style="width:40%; padding-left: 40px; text-align: left;">
+          <b><a href="main.html">ЦЭС</a></b> &nbsp;
+          <a href="women.html">Эмэгтэй</a> &nbsp;
+          <a href="index.html">Хүүхэд</a> &nbsp;
+          <a href="new-arrivals.html">Шинэ бүтээгдэхүүн</a> &nbsp;
+          <a href="sale.html">Хямдралтай</a>
+        </td>
+
+        <td style="width:20%; text-align: center;">
+          <a href="main.html">
+            <img src="/zurag/logo.png" alt="Logo" style="width:100px; height:auto;">
+          </a>
+        </td>
+
+        <td style="width:40%; padding-right: 40px; text-align: right;">
+          <a href="#"><img src="/zurag/search.png" width="24" height="24" alt="Хайх"></a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="sagslah.html"><img src="/zurag/cart.png" width="24" height="24" alt="Сагс"></a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="login.html"><img src="/zurag/log.png" width="24" height="24" alt="Нэвтрэх"></a>
+        </td>
+      </tr>
+    </table>
+  </header>
+
+  <main>
+    <div class="contact-container">
+      <h1>Бидэнтэй холбогдох</h1>
+      <p class="intro-text">Бидэнд хандах зүйл байна уу? Доорх маягтыг бөглөж илгээнэ үү.</p>
+
+      <form action="mailto:info@lumaatelier.mn" method="post" enctype="text/plain">
+        <fieldset>
+          <legend><b>Холбоо барих маягт</b></legend>
+
+          <label for="topic">Сэдэв:</label>
+          <select id="topic" name="topic" required>
+            <option value="" disabled selected>Сэдэв сонгоно уу</option>
+            <option value="general">Ерөнхий асуулт</option>
+            <option value="support">Тусламж хэрэгтэй байна</option>
+            <option value="feedback">Санал хүсэлт</option>
+            <option value="order">Захиалгын талаар</option>
+            <option value="complaint">Гомдол</option>
+          </select>
+
+          <label for="name">Таны нэр:</label>
+          <input type="text" id="name" name="name" placeholder="Эрхэмбаяр" required>
+
+          <label for="email">И-мэйл хаяг:</label>
+          <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+
+          <label for="phone">Утасны дугаар:</label>
+          <input type="tel" id="phone" name="phone" placeholder="99001122" required>
+
+          <label for="message">Дэлгэрэнгүй:</label>
+          <textarea id="message" name="message" placeholder="Энд бичнэ үү..." required></textarea>
+
+          <div class="consent-box">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent" style="display:inline;"><small>Би <a href="#">нууцлалын бодлого</a>-той танилцсан</small></label>
+          </div>
+
+          <div class="button-group">
+            <button type="submit">ИЛГЭЭХ</button>
+            <button type="reset">ЦЭВЭРЛЭХ</button>
+          </div>
+        </fieldset>
+      </form>
+
+      <p style="text-align:center; color:#666;">Манай Хэрэглэгчийн үйлчилгээний төв таны асуулгад аль болох хурдан хариу өгөх болно.</p>
+
+      <hr>
+
+      <div class="contact-info">
+        <h2>Бусад холбоо барих хаягууд</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>📍 Хаяг</h3>
+            <p>
+              Улаанбаатар хот<br>
+              Сүхбаатар дүүрэг<br>
+              Хороо 1, Блок 123
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>📞 Утас</h3>
+            <p>
+              +976 7000-0000<br>
+              +976 8000-0000<br>
+              <small>(Даваа-Баасан: 09:00-18:00)</small>
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>✉️ И-мэйл</h3>
+            <p>
+              info@lumaatelier.mn<br>
+              support@lumaatelier.mn
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <table>
+      <tr>
+        <td width="25%">
+          <b>LUMA ATELIER</b><br><br>
+          Тансаг, эмэгтэйлэг хэв маягийн дэлгүүр — таны гоо сайхны толь.
+        </td>
+        <td width="25%">
+          <b>ХОЛБООСУУД</b><br><br>
+          <a href="main.html">Нүүр хуудас</a><br>
+          <a href="view-all.html">Бүх бараа</a><br>
+          <a href="new-arrivals.html">Шинээр ирсэн</a><br>
+          <a href="sale.html">Хямдрал</a>
+        </td>
+        <td width="25%">
+          <b>ҮЙЛЧИЛГЭЭ</b><br><br>
+          <a href="who_are_we.html">Бидний тухай</a><br>
+          <a href="location.html">Хаяг байршил</a><br>
+          <a href="login.html">Нууцлалын бодлого</a><br>
+          <a href="mail_us.html">Бидэнтэй холбогдох</a>
+        </td>
+        <td width="25%">
+          <b>МЭДЭЭЛЭЛ АВАХ</b><br><br>
+          <form>
+            <input type="email" placeholder="И-мэйл хаяг" size="25"><br><br>
+            <input type="submit" value="ИЛГЭЭХ">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <center><p>©2025 Luma Atelier</p></center>
+  </footer>
+
+</body>
+</html>
